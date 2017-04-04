@@ -1,0 +1,15 @@
+{
+  "name": "drzewiec-chrony",
+  "version": "1.0.0",
+  "author": "Chris Drzewiecki",
+  "summary": "Module to install and configure the chrony NTP service",
+  "license": "Apache-2.0",
+  "source": "https://github.com/drzewiec/chrony",
+  "project_page": "https://github.com/drzewiec/chrony",
+  "issues_url": "https://github.com/drzewiec/chrony/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
