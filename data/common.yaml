@@ -1,0 +1,19 @@
+---
+chrony::client_allow: false
+chrony::client_networks: ~
+chrony::config: '/etc/chrony/chrony.conf'
+chrony::config_file_mode: '0664'
+chrony::driftfile: '/var/lib/chrony/drift'
+chrony::package_ensure: 'present'
+chrony::package_manage: true
+chrony::package_name: 'chrony'
+chrony::pool_use: true
+chrony::pool_address: 'pool.ntp.org'
+chrony::pool_maxservers: 4
+chrony::pool_iburst: true
+chrony::servers: []
+chrony::service_enable: true
+chrony::service_ensure: 'running'
+chrony::service_manage: true
+chrony::service_name: 'chrony'
+
