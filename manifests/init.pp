@@ -4,9 +4,10 @@
 #
 # @param client_allow [Boolean] Whether to allow clients to connect. Default value: false.
 # @param client_networks [Optional Array[String]] The networks from which clients will be allowed to connect. Default value: undef.
-# @param config [Stdlib::Absolutepath] The path to the config file. Default value: /etc/chrony/chrony.conf.
+# @param config [Stdlib::Absolutepath] The path to the config file. Default value: varies by OS.
 # @param config_file_mode [String] The mode to set on the config file. Default value: 0664.
 # @param driftfile [Stdlib::Absolutepath] The path to the drift file to use. Default value: /var/lib/chrony/drift.
+# @param keyfile [Stdlib::Absolutepath] Path to the keyfile used by chrony. Default value: varies by OS.
 # @param package_ensure [String] What state to ensure the package is in. Values: 'present', 'latest', or a specific version. Default value: present.
 # @param package_manage [Boolean] Whether or not Puppet should manage the state of the chrony package. Default value: false.
 # @param package_name [String] What name to use for the chrony package. Default value: chrony.
@@ -24,7 +25,8 @@ class chrony (
   Optional[Array[String]] $client_networks,
   Stdlib::Absolutepath $config,
   String $config_file_mode,
-  Stdlib::AbsolutePath $driftfile,
+  Stdlib::Absolutepath $driftfile,
+  Stdlib::Absolutepath $keyfile,
   String $package_ensure,
   Boolean $package_manage,
   String $package_name,
