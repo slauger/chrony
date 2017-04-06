@@ -4,6 +4,7 @@ chrony::client_networks: ~
 chrony::config: '/etc/chrony/chrony.conf'
 chrony::config_file_mode: '0664'
 chrony::driftfile: '/var/lib/chrony/drift'
+chrony::keyfile: '/etc/chrony/chrony.keys'
 chrony::package_ensure: 'present'
 chrony::package_manage: true
 chrony::package_name: 'chrony'
