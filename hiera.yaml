@@ -4,10 +4,10 @@ datadir: data
 hierarchy:
   - name: "Full Version"
     backend: yaml
-    path: "%{facts.os.name}-%{facts-os-release.full}"
+    path: "%{facts.os.name}-%{facts.os.release.full}"
   - name: "Major Version"
     backend: yaml
-    path: "%{facts.os.name}-%{facts-os-release.major}"
+    path: "%{facts.os.name}-%{facts.os.release.major}"
   - name: "Distribution Name"
     backend: yaml
     path: "%{facts.os.name}"
