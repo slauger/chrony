@@ -1,0 +1,2 @@
+---
+chrony::pool_address: 'debian.pool.ntp.org'
