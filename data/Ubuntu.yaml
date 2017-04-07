@@ -1,0 +1,2 @@
+---
+chrony::pool_address: 'ubuntu.pool.ntp.org'
