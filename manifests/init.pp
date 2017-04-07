@@ -3,13 +3,13 @@
 # Main class for chrony module, includes all other classes.
 #
 # @param client_allow [Boolean] Whether to allow clients to connect. Default value: false.
-# @param client_networks [Optional Array[String]] The networks from which clients will be allowed to connect. Default value: undef.
+# @param client_sources [Optional Array[String]] The sources (networks or hostnames) from which clients will be allowed to connect. Default value: undef.
 # @param config [Stdlib::Absolutepath] The path to the config file. Default value: varies by OS.
 # @param config_file_mode [String] The mode to set on the config file. Default value: 0664.
 # @param driftfile [Stdlib::Absolutepath] The path to the drift file to use. Default value: /var/lib/chrony/drift.
 # @param keyfile [Stdlib::Absolutepath] Path to the keyfile used by chrony. Default value: varies by OS.
 # @param package_ensure [String] What state to ensure the package is in. Values: 'present', 'latest', or a specific version. Default value: present.
-# @param package_manage [Boolean] Whether or not Puppet should manage the state of the chrony package. Default value: false.
+# @param package_manage [Boolean] Whether or not Puppet should manage the state of the chrony package. Default value: true.
 # @param package_name [String] What name to use for the chrony package. Default value: chrony.
 # @param pool_use [Boolean] Whether or not to use a pool as the source to synchronize from. Default value: true.
 # @param pool_address [String] What address to use for the server pool. Default value: pool.ntp.org.
@@ -19,10 +19,10 @@
 # @param service_enable [Boolean] Whether or not the service should be set to run on startup. Default value: true.
 # @param service_ensure [String] What state to ensure the service is in. Default value: running.
 # @param service_manage [Boolean] Whether to manage the chrony service. Default value: true.
-# @param service_name [String] The name of chrony's service. Default value: chrony.
+# @param service_name [String] The name of chrony's service. Default value: varies by OS.
 class chrony (
   Boolean $client_allow,
-  Optional[Array[String]] $client_networks,
+  Optional[Array[String]] $client_sources,
   Stdlib::Absolutepath $config,
   String $config_file_mode,
   Stdlib::Absolutepath $driftfile,

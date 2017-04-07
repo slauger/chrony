@@ -15,8 +15,8 @@ driftfile <%= scope['chrony::driftfile'] %>
 <% if scope['chrony::client_allow'] -%>
 
 # Set which networks/hosts are allowed to connect to chrony
-<% scope['chrony::client_networks'].each do |client_network| -%>
-allow <%= client_network %>
+<% scope['chrony::client_sources'].each do |client_source| -%>
+allow <%= client_source %>
 <% end -%>
 <% end -%>
 

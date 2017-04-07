@@ -1,6 +1,6 @@
 ---
 chrony::client_allow: false
-chrony::client_networks: ~
+chrony::client_sources: ~
 chrony::config: '/etc/chrony/chrony.conf'
 chrony::config_file_mode: '0664'
 chrony::driftfile: '/var/lib/chrony/drift'
@@ -17,4 +17,3 @@ chrony::service_enable: true
 chrony::service_ensure: 'running'
 chrony::service_manage: true
 chrony::service_name: 'chrony'
-
