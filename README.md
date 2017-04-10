@@ -4,8 +4,6 @@
 
 1. [Description](#description)
 1. [Setup - The basics of getting started with chrony](#setup)
-    * [What chrony affects](#what-chrony-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with chrony](#beginning-with-chrony)
 1. [Usage - Configuration options and additional functionality](#usage)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -14,70 +12,103 @@
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
-
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+Module to install, configure, and manage the chrony service for Linux. Tested on
+Puppet 4.9 and 4.10, should work with older 4.x versions as well.
 
 ## Setup
 
-### What chrony affects **OPTIONAL**
-
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
-
 ### Beginning with chrony
 
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+Simply include the module to install chrony with all its defaults:
+
+```
+include chrony
+```
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+To specify a different pool address (rather than the default distro.pool.ntp.org
+format):
+
+```
+class { 'chrony':
+  pool_address => 'pool.ntp.org',
+}
+```
+
+To specify a list of servers rather than a pool:
+
+```
+class { 'chrony':
+  pool_use => false,
+  servers => ['0.pool.ntp.org','1.pool.ntp.org','2.pool.ntp.org','3.pool.ntp.org'],
+}
+```
+
+To allow clients to query your system for NTP (blocked by default):
+
+```
+class { 'chrony':
+  client_allow => true,
+  client_sources => [
+    'somehostname',
+    '192.168.0.0/24',
+    'fd00::/8',
+  ],
+}
+```
 
 ## Reference
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+### chrony
+
+This is the main class, and the only one that should be used. It calls the other
+classes in turn to install and configure chrony.
+
+#### Parameters
+
+All parameters optional unless otherwise specified.
+
+**client_allow**: Boolean, sets whether or not to allow clients to connect
+**client_sources**: Array[String], a list of hostnames or IP networks allowed to connect.
+Required if client_allow is set to true.
+**config**: String, specifies the location of the config file.
+**config_file_mode**: String, specifies the access mode to set on the config file.
+**driftfile**: String, specifies the location for the driftfile.
+**keyfile**: String, specifies path to the keyfile used to authenticate access to chrony.
+**package_ensure**: String, sets the "ensure" parameter on the package resource for chrony.
+**package_manage**: Boolean, sets whether or not Puppet will manage the chrony package.
+**package_name**: String, specifies the name of the chrony package.
+**pool_use**: Boolean, sets whether or not to use a "pool" directive in chrony.conf
+**pool_address**: String, the address of the NTP pool to use.
+**pool_maxservers**: Integer, the number of sources to pull from the pool.
+**pool_iburst**: Boolean, specifies whether or not to set the iburst on the pool.
+**servers**: Array[String], specifies the list of servers to sync time from.
+Required if pool_use is set to false.
+**service_enable**: Boolean, whether to enable the chrony service to run at startup.
+**service_ensure**: String, sets the "ensure" parameter on the service resource for chrony.
+**service_manage**: Boolean, whether or not Puppet should manage the chrony service.
+**service_name**: String, the name of the chrony service.
+
+### chrony::install
+
+Installs the chrony package.
+
+### chrony::config
+
+Builds chrony.conf based on the parameters passed into the base class.
+
+### chrony::service
+
+Manages the chrony service.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+Tested on Puppet 4.9 and 4.10, and the following Linux releases:
 
-## Development
+CentOS 6.9, 7.3
+Debian 7.11, 8.7
+Ubuntu 12.04, 14.04, 16.04
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+Other Puppet 4.x versions should work, as nothing fancy is going on in the code here.
+Other Linux distros and versions may work, but no guarantees.
