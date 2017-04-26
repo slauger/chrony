@@ -107,6 +107,7 @@ Manages the chrony service.
 Tested on Puppet 4.9 and 4.10, and the following Linux releases:
 
 CentOS 6.9, 7.3  
+RHEL 7.3
 Debian 7.11, 8.7  
 Ubuntu 12.04, 14.04, 16.04  
 
