@@ -1,6 +1,6 @@
 {
   "name": "drzewiec-chrony",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Chris Drzewiecki",
   "summary": "Module to install and configure the chrony NTP service",
   "license": "Apache-2.0",
