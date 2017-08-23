@@ -2,4 +2,3 @@
 chrony::config: '/etc/chrony.conf'
 chrony::keyfile: '/etc/chrony.keys'
 chrony::service_name: 'chronyd'
-chrony::pool_address: 'centos.pool.ntp.org'

@@ -4,15 +4,15 @@ datadir: data
 hierarchy:
   - name: "Full Version"
     backend: yaml
-    path: "%{facts.os.name}-%{facts.os.release.full}"
+    path: "release/%{facts.os.name}-%{facts.os.release.full}"
   - name: "Major Version"
     backend: yaml
-    path: "%{facts.os.name}-%{facts.os.release.major}"
+    path: "release/%{facts.os.name}-%{facts.os.release.major}"
   - name: "Distribution Name"
     backend: yaml
-    path: "%{facts.os.name}"
+    path: "distribution/%{facts.os.name}"
   - name: "Operating System Family"
     backend: yaml
-    path: "%{facts.os.family}"
+    path: "osfamily/%{facts.os.family}"
   - name: "common"
     backend: yaml

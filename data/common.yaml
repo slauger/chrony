@@ -12,7 +12,11 @@ chrony::pool_use: true
 chrony::pool_address: 'pool.ntp.org'
 chrony::pool_maxservers: 4
 chrony::pool_iburst: true
-chrony::servers: []
+chrony::servers:
+  - '0.pool.ntp.org'
+  - '1.pool.ntp.org'
+  - '2.pool.ntp.org'
+  - '3.pool.ntp.org'
 chrony::service_enable: true
 chrony::service_ensure: 'running'
 chrony::service_manage: true
