@@ -2,6 +2,7 @@
 #
 # Main class for chrony module, includes all other classes.
 #
+# @param bindaddress [String] A specific address to listen for NTP requests. Default value: undef
 # @param client_allow [Boolean] Whether to allow clients to connect. Default value: false.
 # @param client_sources [Optional Array[String]] The sources (networks or hostnames) from which clients will be allowed to connect. Default value: undef.
 # @param config [Stdlib::Absolutepath] The path to the config file. Default value: varies by OS.
@@ -21,6 +22,7 @@
 # @param service_manage [Boolean] Whether to manage the chrony service. Default value: true.
 # @param service_name [String] The name of chrony's service. Default value: varies by OS.
 class chrony (
+  Optional[String] $bindaddress,
   Boolean $client_allow,
   Optional[Array[String]] $client_sources,
   Stdlib::Absolutepath $config,
