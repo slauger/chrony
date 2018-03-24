@@ -1,4 +1,5 @@
 ---
+chrony::bindaddress: ~
 chrony::client_allow: false
 chrony::client_sources: ~
 chrony::config: '/etc/chrony/chrony.conf'
