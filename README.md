@@ -69,7 +69,7 @@ classes in turn to install and configure chrony.
 
 All parameters optional unless otherwise specified.
 
-**bindaddress**: String, a specific address to listen for NTP requests. 
+**bindaddress**: String, a specific address to listen for NTP requests.  
 **client_allow**: Boolean, sets whether or not to allow clients to connect.  
 **client_sources**: Array[String], a list of hostnames or IP networks allowed to connect.
 Required if client_allow is set to true.  
