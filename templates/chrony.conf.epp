@@ -39,10 +39,6 @@ logchange 0.5
 # real-time clock. Note that it can't be used along with the 'rtcfile' directive.
 rtcsync
 
-# This directive sets the key ID used for authenticating user commands via the
-# 'chronyc' program at run time.
-commandkey 1
-
 # Comment this line out to turn off logging.
 log tracking measurements statistics
 logdir /var/log/chrony
