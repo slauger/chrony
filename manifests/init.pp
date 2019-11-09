@@ -7,6 +7,7 @@
 # @param client_sources [Optional Array[String]] The sources (networks or hostnames) from which clients will be allowed to connect. Default value: undef.
 # @param config [Stdlib::Absolutepath] The path to the config file. Default value: varies by OS.
 # @param config_file_mode [String] The mode to set on the config file. Default value: 0664.
+# @param config_manage [Boolean] Whether to manage the chrony configuration. Default value: true.
 # @param driftfile [Stdlib::Absolutepath] The path to the drift file to use. Default value: /var/lib/chrony/drift.
 # @param keyfile [Stdlib::Absolutepath] Path to the keyfile used by chrony. Default value: varies by OS.
 # @param package_ensure [String] What state to ensure the package is in. Values: 'present', 'latest', or a specific version. Default value: present.
@@ -27,6 +28,7 @@ class chrony (
   Optional[Array[String]] $client_sources,
   Stdlib::Absolutepath $config,
   String $config_file_mode,
+  Boolean $config_manage,
   Stdlib::Absolutepath $driftfile,
   Stdlib::Absolutepath $keyfile,
   String $package_ensure,
@@ -42,9 +44,11 @@ class chrony (
   Boolean $service_manage,
   String $service_name,
 ) {
-  contain chrony::install
-  contain chrony::config
-  contain chrony::service
+  contain 'chrony::package'
+  contain 'chrony::config'
+  contain 'chrony::service'
 
-  Class['chrony::install'] -> Class['chrony::config'] ~> Class['chrony::service']
+  Class['chrony::package']
+  ->Class['chrony::config']
+  ~>Class['chrony::service']
 }
