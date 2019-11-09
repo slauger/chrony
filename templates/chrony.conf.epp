@@ -39,8 +39,10 @@ logchange 0.5
 # real-time clock. Note that it can't be used along with the 'rtcfile' directive.
 rtcsync
 
+<% if $chrony::rtconutc { -%>
 # Specify that the real time clock keeps UTC not local time
 rtconutc
+<% } -%>
 
 # Comment this line out to turn off logging.
 log tracking measurements statistics

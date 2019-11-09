@@ -18,6 +18,7 @@
 # @param pool_maxservers [Integer[1]] How many servers to grab from the pool. Default value: 4.
 # @param pool_iburst [Boolean] Whether or not to set the iburst option on the pool. Default value: true.
 # @param servers [Array[String]] Array of servers to set as sources. Used only if pool_use is false. Default value: empty array.
+# @param rtconutc [Boolean] Whether the RTC should be in UTC or in local time.
 # @param service_enable [Boolean] Whether or not the service should be set to run on startup. Default value: true.
 # @param service_ensure [String] What state to ensure the service is in. Default value: running.
 # @param service_manage [Boolean] Whether to manage the chrony service. Default value: true.
@@ -39,6 +40,7 @@ class chrony (
   Integer[1] $pool_maxservers,
   Boolean $pool_iburst,
   Array[String] $servers,
+  Boolean $rtconutc,
   Boolean $service_enable,
   String $service_ensure,
   Boolean $service_manage,
